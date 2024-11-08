@@ -2,6 +2,13 @@ import siteMetadata from '@/data/siteMetadata'
 import "./globals.css";
 import { ThemeProviders } from './theme-providers';
 import ThemeSwitch from '@/components/ThemeSwitch';
+import { dir } from 'i18next';
+
+// 添加静态路由
+export async function generateStaticParams() {
+  return siteMetadata.languages.map((lng) => ({ lng }))
+}
+
 
 export const metadata = {
   metadataBase: new URL(siteMetadata.siteUrl),
@@ -43,9 +50,9 @@ export const metadata = {
   },
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children, params }: { children: React.ReactNode, params: { lng: string } }) {
   return (
-    <html lang={siteMetadata.locale} suppressHydrationWarning>
+    <html lang={params.lng} dir={dir(params.lng)} suppressHydrationWarning>
       <body>
         <ThemeProviders>
           <header className='flex justify-end'>
