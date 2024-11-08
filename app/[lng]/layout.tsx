@@ -3,6 +3,7 @@ import "./globals.css";
 import { ThemeProviders } from './theme-providers';
 import ThemeSwitch from '@/components/ThemeSwitch';
 import { dir } from 'i18next';
+import LangSwitch from '@/components/LangSwitch';
 
 // 添加静态路由
 export async function generateStaticParams() {
@@ -56,6 +57,7 @@ export default function RootLayout({ children, params }: { children: React.React
       <body>
         <ThemeProviders>
           <header className='flex justify-end'>
+            <LangSwitch />
             <ThemeSwitch />
           </header>
           {children}
